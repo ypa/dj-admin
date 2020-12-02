@@ -40,3 +40,5 @@ doolay/fixtures/images/*
 .env
 
 db.sqlite3
+.vscode/
+.dbdata/
