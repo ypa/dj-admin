@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# my own project related stuff
+.idea
+settings_local.py
+settings_prod.py
+media/
+static/*
+.DS_Store
+/venv/
+.venv/
+/.vagrant/
+*.log
+*.lock
+doolay/fixtures/images/*
+
+
+# Sublime Text files
+*.sublime-project
+*.sublime-workspace
+
+# django env
+.env
+
+db.sqlite3
