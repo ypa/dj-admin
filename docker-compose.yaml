@@ -1,27 +1,28 @@
 version: '3.8'
 services:
+  admin_db:
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: changeme
+    restart: always
+    image: postgres:9.6
+    expose:
+      - "5432"
+
   admin_api:
+    environment:
+      DJANGO_SECRET_KEY: changeme
+      DATABASE_URL: postgres://app_user:changeme@admin_db/app_db
     container_name: django_api
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
+    links:
+      - admin_db:admin_db
     volumes:
       - .:/app
     ports:
-      - 8000:8000
+      - "8000:8000"
     depends_on:
       - admin_db
-
-  admin_db:
-    container_name: django_admin_db
-    image: mysql:5.7.22
-    restart: always
-    environment:
-      MYSQL_DATABASE: django_admin
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - .dbdata:/var/lib/mysql
-    ports:
-      - 33066:3306
