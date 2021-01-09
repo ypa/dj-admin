@@ -1,28 +1,18 @@
-version: '3.8'
+version: "3.9"
+   
 services:
-  admin_db:
+  db:
+    image: postgres
     environment:
-      POSTGRES_DB: app_db
-      POSTGRES_USER: app_user
-      POSTGRES_PASSWORD: changeme
-    restart: always
-    image: postgres:9.6
-    expose:
-      - "5432"
-
-  admin_api:
-    environment:
-      DJANGO_SECRET_KEY: changeme
-      DATABASE_URL: postgres://app_user:changeme@admin_db/app_db
-    container_name: django_api
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    links:
-      - admin_db:admin_db
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app
+      - .:/code
     ports:
       - "8000:8000"
     depends_on:
-      - admin_db
+      - db
