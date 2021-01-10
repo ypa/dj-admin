@@ -9,6 +9,8 @@ services:
       - POSTGRES_DB=django_admin
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
+    ports:
+      - "55432:5432"
   admin_api:
     container_name: django_admin_api
     build: .
