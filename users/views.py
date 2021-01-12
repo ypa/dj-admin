@@ -60,9 +60,3 @@ class AuthenticatedUser(APIView):
         serializer = UserSerializer(request.user)
 
         return Response({"data": serializer.data})
-
-
-@api_view(["GET"])
-def users(request):
-    serializer = UserSerializer(User.objects.all(), many=True)
-    return Response(serializer.data)
