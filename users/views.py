@@ -109,7 +109,12 @@ class RoleViewSet(viewsets.ViewSet):
 
 
 class UserGenericAPIView(
-    generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin
+    generics.GenericAPIView,
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
 ):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -121,3 +126,12 @@ class UserGenericAPIView(
             return Response({"data": self.retrieve(request, pk).data})
 
         return Response({"data": self.list(request).data})
+
+    def post(self, request):
+        return Response({"data": self.create(request).data})
+
+    def put(self, request, pk=None):
+        return Response({"data": self.update(request, pk).data})
+
+    def delete(self, request, pk=None):
+        return self.destroy(request, pk)
