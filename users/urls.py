@@ -7,6 +7,7 @@ from .views import (
     logout,
     PermissionAPIView,
     RoleViewSet,
+    UserGenericAPIView,
 )
 
 
@@ -35,4 +36,6 @@ urlpatterns = [
             }
         ),
     ),
+    path("users", UserGenericAPIView.as_view()),
+    path("users/<str:pk>", UserGenericAPIView.as_view()),
 ]
