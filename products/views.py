@@ -51,4 +51,4 @@ class FileUploadView(APIView):
         file_name = default_storage.save(file.name, file)
         url = default_storage.url(file_name)
 
-        return Response({"url": url})
+        return Response({"url": "http://localhost:8000/api" + url})
