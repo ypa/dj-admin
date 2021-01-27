@@ -42,7 +42,9 @@ class RoleRelatedField(serializers.RelatedField):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    role = RoleRelatedField(many=False, queryset=Role.objects.all())
+    role = RoleRelatedField(
+        many=False, default=Role.objects.get(name="Viewer"), queryset=Role.objects.all()
+    )
 
     class Meta:
         model = User
