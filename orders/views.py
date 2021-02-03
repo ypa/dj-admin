@@ -66,7 +66,7 @@ class ChartAPIView(APIView):
             cursor.execute(
                 """
                 SELECT
-                to_char(o.created_at, 'YYYY-Mon-dd') as date
+                to_char(o.created_at, 'YYYY-MM-dd') as date
                 , sum(i.quantity * i.price) as sum
                 FROM orders_order as o
                 JOIN orders_orderitem as i ON o.id = i.order_id
